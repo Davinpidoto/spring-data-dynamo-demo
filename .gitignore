@@ -25,4 +25,8 @@ dist/
 nbdist/
 .nb-gradle/
 
-node_modules/
+frontend/node_modules/
+frontend/.DS_Store
+frontend/dist/
+frontend/npm-debug.log*
+
