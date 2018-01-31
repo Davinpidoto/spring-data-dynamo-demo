@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style>
-  @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+  @import '../node_modules/bootstrap/dist/css/bootstrap.css';
   .navbar{
     margin-bottom: 30px;
   }

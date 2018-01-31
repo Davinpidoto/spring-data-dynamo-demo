@@ -7,7 +7,10 @@
       <table class="table table-striped table-bordered">
         <tbody>
         <tr v-for="user in users" :key="user.id">
-          <td >{{user.firstName}} {{user.lastName}} <button type="button" class="btn btn-primary btn-sm float-right" v-on:click="deleteUser(user.id)">Delete</button></td>
+          <td>{{user.firstName}} {{user.lastName}}
+            <router-link :to="{name: 'EditUser' ,params: { id: user.id }}"><button type="button" class="btn btn-secondary btn-sm float-right edit">Edit</button></router-link>
+            <button type="button" class="btn btn-secondary btn-sm float-right delete" v-on:click="deleteUser(user.id)">Delete</button>
+          </td>
         </tr>
         </tbody>
       </table>
@@ -47,7 +50,14 @@ export default {
     }
   },
   created () {
-    this.fetchUsers()
+    let self = this
+    axios.get('http://localhost:8080/users')
+      .then(function (response) {
+        self.users = response.data
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }
 </script>
@@ -55,5 +65,14 @@ export default {
 <style scoped>
   .panel{
     margin-top:20px;
+  }
+  .delete{
+    margin-right:20px;
+  }
+  .btn-sm{
+    line-height:1;
+  }
+  h3 {
+    margin-bottom: 30px;
   }
 </style>

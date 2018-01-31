@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -18,6 +19,12 @@ public class UserController {
   @GetMapping("/users")
   public Iterable<User> getUsers() {
     return userRepository.findAll();
+  }
+
+  @GetMapping("/users/{id}")
+  public User getUser(@PathVariable String id) {
+    Optional<User> user = userRepository.findById(id);
+    return user.isPresent() ? user.get() : null;
   }
 
   @PostMapping("/users")
