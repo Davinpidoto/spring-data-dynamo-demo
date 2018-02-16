@@ -1,0 +1,128 @@
+swagger: "2.0"
+info:
+  description: "This API expose the CRUD operations for a demo application of spring-data-dynamo-db"
+  version: "1.0.0"
+  title: "spring-data-dynamodb demo"
+schemes:
+- "http"
+paths:
+  /users:
+    get:
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/User"
+        500:
+          description: "Error"
+
+    post:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "User"
+        required: true
+        schema:
+          $ref: "#/definitions/UserRequest"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid Input"
+        500:
+          description: "Error"
+
+  /users/{userId}:
+    get:
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid Input"
+        500:
+          description: "Error"
+
+    put:
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "User"
+        required: true
+        schema:
+          $ref: "#/definitions/UserRequest"
+      responses:
+        200:
+          description: "Success"
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: "Invalid Input"
+        500:
+          description: "Error"
+
+    delete:
+      parameters:
+      - name: "userId"
+        in: "path"
+        description: "ID of user"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "Success"
+        400:
+          description: "Invalid Input"
+        500:
+          description: "Error"
+
+definitions:
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "b24434d8-12f5-11e8-b642-0ed5f89f718b"
+      fisrtName:
+        type: "string"
+        example: "John"
+      lastName:
+        type: "string"
+        example: "Doe"
+  UserRequest:
+    type: "object"
+    properties:
+      fisrtName:
+        type: "string"
+        example: "John"
+      lastName:
+        type: "string"
+        example: "Doe"
