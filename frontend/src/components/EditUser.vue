@@ -27,7 +27,7 @@ export default {
     updateUser: function (event) {
       let self = this
       event.preventDefault()
-      axios.put('http://localhost:8080/users/' + this.user.id, this.user)
+      axios.put('http://localhost:8090/users/' + this.user.id, this.user)
         .then(function () {
           self.$router.push('/')
         })
@@ -38,7 +38,7 @@ export default {
   },
   created () {
     let self = this
-    axios.get('http://localhost:8080/users/' + this.id)
+    axios.get('http://localhost:8090/users/' + this.id)
       .then(function (response) {
         self.user = response.data
       })

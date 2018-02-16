@@ -26,7 +26,7 @@ export default {
     createUser: function (event) {
       let self = this
       event.preventDefault()
-      axios.post('http://localhost:8080/users', this.user)
+      axios.post('http://localhost:8090/users', this.user)
         .then(function () {
           self.user = {}
           self.$router.push('/')

@@ -30,7 +30,7 @@ export default {
   methods: {
     deleteUser: function (id) {
       let self = this
-      axios.delete('http://localhost:8080/users/' + id)
+      axios.delete('http://localhost:8090/users/' + id)
         .then(function (response) {
           self.fetchUsers()
         })
@@ -40,7 +40,7 @@ export default {
     },
     fetchUsers: function () {
       let self = this
-      axios.get('http://localhost:8080/users')
+      axios.get('http://localhost:8090/users')
         .then(function (response) {
           self.users = response.data
         })
@@ -51,7 +51,7 @@ export default {
   },
   created () {
     let self = this
-    axios.get('http://localhost:8080/users')
+    axios.get('http://localhost:8090/users')
       .then(function (response) {
         self.users = response.data
       })
